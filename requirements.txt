@@ -1,0 +1,9 @@
+gdown
+librosa
+audioread
+opencv-python
+numpy
+pandas
+scipy
+tensorflow
+tqdm
