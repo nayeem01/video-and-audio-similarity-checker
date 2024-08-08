@@ -158,19 +158,29 @@ def run_video_similarity_model(
 
 
 def main():
-    sharing_link_video1 = "https://drive.google.com/file/d/1vrz_EJ3D1j6yYi5NnlTYssfGoyq1vqnw/view?usp=drive_link"
-    sharing_link_video2 = "https://drive.google.com/file/d/1sb5ODQcGu-N3f_6XllVTBAsMzRaMGWEn/view?usp=drive_link"
     path = "./videos/"
+    video1_path = ""
+    video2_path = ""
 
     if not os.path.exists(path):
         os.makedirs(path)
 
-    video1_path = os.path.join(path, "video1.mp4")
-    video2_path = os.path.join(path, "video2.mp4")
+    inp = input("local video or sharing link? (local/sharing): ")
 
-    print("Downloading videos...")
-    download_video(sharing_link_video1, video1_path)
-    download_video(sharing_link_video2, video2_path)
+    if inp == "local":
+        video1_path = input("Please enter the first video path: ")
+        video2_path = input("Please enter the second video path: ")
+
+    else:
+        sharing_link_video1 = input("Please enter the first video link: ")
+        sharing_link_video2 = input("Please enter the second video link: ")
+
+        video1_path = os.path.join(path, "v1.mp4")
+        video2_path = os.path.join(path, "v2.mp4")
+
+        print("Downloading videos...")
+        download_video(sharing_link_video1, video1_path)
+        download_video(sharing_link_video2, video2_path)
 
     if not check_video_audio(video1_path) or not check_video_audio(video2_path):
         print("One or both videos do not contain audio streams. Exiting...")
